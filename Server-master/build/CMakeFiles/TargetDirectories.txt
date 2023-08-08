@@ -1,0 +1,3 @@
+/home/liuaoqi/GameBook/GameBookServer-master/build/CMakeFiles/test.dir
+/home/liuaoqi/GameBook/GameBookServer-master/build/CMakeFiles/edit_cache.dir
+/home/liuaoqi/GameBook/GameBookServer-master/build/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "*.inc": "cpp"
+    },
+    "cmake.sourceDirectory": "/home/liuaoqi/GameBook/GameBookServer-master/00_01_gcc"
+}
