@@ -46,12 +46,12 @@ void Network::RegisterMsgFunction()
 
 void Network::SetSocketOpt(SOCKET socket)
 {
-    // 1.¶Ë¿Ú¹Ø±ÕºóÂíÉÏÖØÐÂÆôÓÃ
+    // 1.ï¿½Ë¿Ú¹Ø±Õºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     bool isReuseaddr = true;
     setsockopt(socket, SOL_SOCKET, SO_REUSEADDR, (SetsockOptType)& isReuseaddr, sizeof(isReuseaddr));
 
-    // 2.·¢ËÍ¡¢½ÓÊÕtimeout
-    int netTimeout = 3000; // 1000 = 1Ãë
+    // 2.ï¿½ï¿½ï¿½Í¡ï¿½ï¿½ï¿½ï¿½ï¿½timeout
+    int netTimeout = 3000; // 1000 = 1ï¿½ï¿½
     setsockopt(socket, SOL_SOCKET, SO_SNDTIMEO, (SetsockOptType)& netTimeout, sizeof(netTimeout));
     setsockopt(socket, SOL_SOCKET, SO_RCVTIMEO, (SetsockOptType)& netTimeout, sizeof(netTimeout));
 
@@ -60,9 +60,9 @@ void Network::SetSocketOpt(SOCKET socket)
     int keepAlive = 1;
     socklen_t optlen = sizeof(keepAlive);
 
-    int keepIdle = 60 * 2;	// ÔÚsocket Ã»ÓÐ½»»¥ºó ¶à¾Ã ¿ªÊ¼·¢ËÍÕì²â°ü
-    int keepInterval = 10;	// ¶à´Î·¢ËÍÕì²â°üÖ®¼äµÄ¼ä¸ô
-    int keepCount = 5;		// Õì²â°ü¸öÊý
+    int keepIdle = 60 * 2;	// ï¿½ï¿½socket Ã»ï¿½Ð½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    int keepInterval = 10;	// ï¿½ï¿½Î·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½Ä¼ï¿½ï¿½
+    int keepCount = 5;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
     setsockopt(socket, SOL_SOCKET, SO_KEEPALIVE, (SetsockOptType)& keepAlive, optlen);
     if (getsockopt(socket, SOL_SOCKET, SO_KEEPALIVE, &keepAlive, &optlen) < 0)
@@ -81,7 +81,7 @@ void Network::SetSocketOpt(SOCKET socket)
 
 #endif
 
-    // 3.·Ç×èÈû
+    // 3.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     _sock_nonblock(socket);
 }
 
@@ -277,6 +277,7 @@ void Network::Update()
     _sendMsgMutex.lock();
     if (_sendMsgList.CanSwap())
     {
+        //  æœåŠ¡å™¨ç¼“å­˜åŒºï¼Œè¿›è¡Œè¯»å†™åˆ†ç¦»ã€‚
         _sendMsgList.Swap();
     }
     _sendMsgMutex.unlock();
