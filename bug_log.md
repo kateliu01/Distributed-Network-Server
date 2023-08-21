@@ -261,3 +261,36 @@ std::move是C++11中引入的移动语义的关键字，它将一个左值转换
 即 采用移动拷贝构造/移动赋值运算符 取代 拷贝构造函数/赋值运算符，将 左值转换成右值引用，转移了资源所有权。
 
 
+
+##  <font color="red">apache和nginx端口冲突</font>
+
+采用的nginx进行反向代理，默认端口是80；选择apache的abs来进程压力测试，
+   ```bash
+    sudo apt update
+    sudo apt install apache2-utils
+   ```
+   abs存在于apache2工具集中，启动了apache2，默认端口也是80
+   修改了apache2的端口为82:
+    step1：修改监听端口以及主机端口为90
+    打开目录/etc/apache2/ports.conf文件，将端口的80改为82,443改成了442
+    命令sudo vi /etc/apache2/ports.conf
+    step2: 只要修改virtualHost的端口即可
+    在ports.conf文件中看到了注释，/etc/apache2/sites-enabled/000-default文件，打开文件后把<VirtualHost *:80>修改成90
+    step3：重启apache2
+    命令service apache2 start
+
+##  <font color="red">ab报错apr_pollset_poll 7007</font>
+    ```bash
+    (base) liuaoqi@liuaoqi:~$ ab -n 1000 -c 100 http://192.169.1.120/
+    This is ApacheBench, Version 2.3 <$Revision: 1807734 $>
+    Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+    Licensed to The Apache Software Foundation, http://www.apache.org/
+
+    Benchmarking 192.169.1.120 (be patient)
+    apr_pollset_poll: The timeout specified has expired (70007)
+    ```
+    主要是timeout连接超时了，可以加个-k参数，让连接KeepAlive
+
+
+##  <font color="red">在ubuntu中的浏览器中访问nginx的端口，出现的却是apache的欢迎页</font>
+apache与nginx是共用同一个站点目录的，即在apache和nginx中部署的网页文件都放在同一个目录下---/var/www/html
