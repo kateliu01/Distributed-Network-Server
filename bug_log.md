@@ -294,3 +294,11 @@ std::move是C++11中引入的移动语义的关键字，它将一个左值转换
 
 ##  <font color="red">在ubuntu中的浏览器中访问nginx的端口，出现的却是apache的欢迎页</font>
 apache与nginx是共用同一个站点目录的，即在apache和nginx中部署的网页文件都放在同一个目录下---/var/www/html
+
+
+
+
+
+##  <font color="red">配置log4cplus</font>
+在使用到了log4cplus的项目CMakeLists.txt中要加 CMAKE_CXX_FLAGS 的属性 -llog4cplus
+如果遇到了动态库的错误，也要配置动态库路径。
